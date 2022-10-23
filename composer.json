@@ -1,0 +1,13 @@
+{
+    "name": "cmdstr/discordwebhook",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "cmdstr\\discordwebhook\\": "./src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
