@@ -3,8 +3,8 @@
 namespace Discord\Webhook\Embeds\Parts;
 
 use Discord\Webhook\ArraySerializer;
-
 use Exception;
+
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
  */
