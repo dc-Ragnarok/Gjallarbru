@@ -1,28 +1,36 @@
 <?php
 
-namespace cmdstr\discordwebhook\Embeds\Parts;
+namespace Discord\Webhook\Embeds\Parts;
 
-use cmdstr\discordwebhook\ArraySerializer;
+use Discord\Webhook\ArraySerializer;
 
 /**
- * @method self setName(string $name)
- * @method self setUrl(string $url)
- * 
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 class Provider extends ArraySerializer {
+    /**
+     * @return void
+     */
     protected function check(): void
     {
 
     }
 
+    /**
+     * @param string $name
+     * 
+     * @return self
+     */
     public function setName(string $name): self
     {
         return $this->setData("name", $name);
     }
 
+    /**
+     * @param string $url
+     * 
+     * @return self
+     */
     public function setUrl(string $url): self
     {
         return $this->setData("url", $url);

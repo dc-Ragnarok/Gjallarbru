@@ -1,20 +1,19 @@
 <?php
 
-namespace cmdstr\discordwebhook\Embeds\Parts;
+namespace Discord\Webhook\Embeds\Parts;
 
-use cmdstr\discordwebhook\ArraySerializer;
+use Discord\Webhook\ArraySerializer;
 use Exception;
 
 /**
- * @method self setName(string $name)
- * @method self setValue(string $value)
- * @method self setInline(string $inline)
- * 
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 class Field extends ArraySerializer {
+    /**
+     * @throws Exception
+     * 
+     * @return void
+     */
     protected function check(): void
     {
         if (!isset($this->data["name"])) {
@@ -26,16 +25,31 @@ class Field extends ArraySerializer {
         }
     }
 
+    /**
+     * @param string $name
+     * 
+     * @return self
+     */
     public function setName(string $name): self
     {
         return $this->setData("name", $name);
     }
 
+    /**
+     * @param string $value
+     * 
+     * @return self
+     */
     public function setValue(string $value): self
     {
         return $this->setData("value", $value);
     }
 
+    /**
+     * @param bool $inline
+     * 
+     * @return self
+     */
     public function setInline(bool $inline): self
     {
         return $this->setData("inline", $inline);

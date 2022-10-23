@@ -1,6 +1,6 @@
 <?php
 
-namespace cmdstr\discordwebhook\Parts;
+namespace Discord\Webhook\Parts;
 
 /**
  * @see https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mention-types

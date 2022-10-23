@@ -1,35 +1,47 @@
 <?php
 
-namespace cmdstr\discordwebhook\Embeds\Parts;
+namespace Discord\Webhook\Embeds\Parts;
 
-use cmdstr\discordwebhook\ArraySerializer;
+use Discord\Webhook\ArraySerializer;
 
 use Exception;
 /**
- * @method self setText(string $text)
- * @method self setIconUrl(string $icon_url)
- * @method self setProxyIconUrl(string $proxy_icon_url)
- * 
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 class Footer extends ArraySerializer {
+    /**
+     * @param string $text
+     * 
+     * @return self
+     */
     public function setText(string $text): self
     {
         return $this->setData("text", $text);
     }
 
+    /**
+     * @param string $iconURL
+     * 
+     * @return self
+     */
     public function setIconUrl(string $icon_url): self
     {
         return $this->setData("icon_url", $icon_url);
     }
 
+    /**
+     * @param string $proxy_icon_url
+     * 
+     * @return self
+     */
     public function setProxyIconUrl(string $proxy_icon_url): self
     {
         return $this->setData("proxy_icon_url", $proxy_icon_url);
     }
 
+    /**
+     * @return void
+     */
     protected function check(): void
     {
         if (!isset($this->data["text"]) || empty($this->data["text"])) {

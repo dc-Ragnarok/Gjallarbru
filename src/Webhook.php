@@ -1,9 +1,9 @@
 <?php
 
-namespace cmdstr\discordwebhook;
+namespace Discord\Webhook;
 
-use cmdstr\discordwebhook\Embeds\Embed;
-use cmdstr\discordwebhook\Parts\AllowedMentions;
+use Discord\Webhook\Embeds\Embed;
+use Discord\Webhook\Parts\AllowedMentions;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
@@ -16,17 +16,7 @@ use Psr\Http\Message\ResponseInterface;
  * @property string $payload
  * @property array  $files
  * @property int    $file_count
- * 
- * @method void __construct(string $url, string $thread_id = "", bool $wait = false)
- * @method self setContent(string $content)
- * @method self setUsername(string $username)
- * @method self setAvatarUrl(string $avatar_url)
- * @method self setTts(bool $tts)
- * @method self addEmbeds(Embed ...$embeds)
- * @method self setAllowedMentions(AllowedMentions $allowedMentions)
- * @method self addFile(string $path, string $name = "", string $description = "")
- * @method self addAttachment(int $file_id, string $file_name, string $description = "")
- * @method ResponseInterface send()
+ * @property array  $query_params
  * 
  * @see https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params
  * 
@@ -37,38 +27,57 @@ class Webhook extends ArraySerializer {
 
     private array $files = [];
     private int $file_count = -1;
+    private array $query_params = [];
 
-    public function __construct(private string $url, private string $thread_id = "", private bool $wait = false)
+    /**
+     * @param string $url
+     * @param string $thread_id
+     */
+    public function __construct(private string $url, string $thread_id = "")
     {
-        $this->url = $url;
-
         if (!empty($thread_id)) {
-            $this->url .= "?thread_id=$thread_id";
-        }
-
-        if ($wait) {
-            if (empty($thread_id)) {
-                $this->url .= "?";
-            } else {
-                $this->url .= "&";
-            }
-
-            $this->url .= "wait=1";
+            $this->addQueryParam(QueryParamTypes::THREAD_ID, $thread_id);
         }
     }
 
+    /**
+     * @return void
+     */
     protected function check(): void
     {
         if (
             !isset($this->data["content"]) &&
-            empty($this->files)            &&
             !isset($this->data["embeds"])  &&
-            empty($this->data["embeds"])
+            empty($this->files)
         ) {
             throw new Exception("You must send at least one of the following: content, file, embeds");
         }
     }
 
+    /**
+     * @param QueryParamTypes $type
+     * @param mixed $value
+     * 
+     * @return self
+     */
+    public function addQueryParam(QueryParamTypes $type, mixed $value): self
+    {
+        if ($type === QueryParamTypes::WAIT && !is_bool($value)) {
+            throw new Exception("WAIT query parameter must be an int or bool!");
+        } else if ($type === QueryParamTypes::THREAD_ID && !is_string($value)) {
+            throw new Exception("THREAD_ID query parameter must be a string!");
+        }
+
+        $this->query_params[$type->value] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     * 
+     * @return self
+     */
     public function setContent(string $content): self
     {
         if (strlen($content) > 2000) {
@@ -78,21 +87,41 @@ class Webhook extends ArraySerializer {
         return $this->setData("content", $content);
     }
 
+    /**
+     * @param string $username
+     * 
+     * @return self
+     */
     public function setUsername(string $username): self
     {
         return $this->setData("username", $username);
     }
 
+    /**
+     * @param string $avatar_url
+     * 
+     * @return self
+     */
     public function setAvatarUrl(string $avatar_url): self
     {
         return $this->setData("avatar_url", $avatar_url);
     }
 
+    /**
+     * @param bool $tts
+     * 
+     * @return self
+     */
     public function setTts(bool $tts): self
     {
         return $this->setData("tts", $tts);
     }
 
+    /**
+     * @param Embed $embeds
+     * 
+     * @return self
+     */
     public function addEmbeds(Embed ...$embeds): self
     {
         if (!isset($this->data["embeds"])) {
@@ -106,10 +135,23 @@ class Webhook extends ArraySerializer {
         return $this;
     }
     
-    public function setAllowedMentions(AllowedMentions $allowedMentions) {
-        $this->setData("allowed_mentions", $allowedMentions->toArray());
+    /**
+     * @param AllowedMentions $allowedMentions
+     * 
+     * @return self
+     */
+    public function setAllowedMentions(AllowedMentions $allowedMentions): self
+    {
+        return $this->setData("allowed_mentions", $allowedMentions->toArray());
     }
 
+    /**
+     * @param string $path
+     * @param string $name
+     * @param string $description
+     * 
+     * @return self
+     */
     public function addFile(string $path, string $name = "", string $description = ""): self
     {
         if (!file_exists($path)) {
@@ -134,6 +176,13 @@ class Webhook extends ArraySerializer {
         return $this;
     }
 
+    /**
+     * @param int $file_id
+     * @param string $file_name
+     * @param string $description
+     * 
+     * @return self
+     */
     private function addAttachment(int $file_id, string $file_name, string $description = ""): self
     {
         if (!isset($this->data["attachments"])) {
@@ -149,6 +198,9 @@ class Webhook extends ArraySerializer {
         return $this;
     }
 
+    /**
+     * @return ResponseInterface
+     */
     public function send(): ResponseInterface
     {
         $client = new Client(["verify" => false]);
@@ -161,6 +213,10 @@ class Webhook extends ArraySerializer {
                 ]
             ]
         ];
+
+        if (!empty($this->query_params)) {
+            $this->url .= "?".http_build_query($this->query_params);
+        }
 
         return $client->send((new Request('POST', $this->url)), $options);
     }

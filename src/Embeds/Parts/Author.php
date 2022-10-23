@@ -1,20 +1,19 @@
 <?php
 
-namespace cmdstr\discordwebhook\Embeds\Parts;
+namespace Discord\Webhook\Embeds\Parts;
 
-use cmdstr\discordwebhook\ArraySerializer;
+use Discord\Webhook\ArraySerializer;
 use Exception;
 
-/**
- * @method self setName(string $name)
- * @method self setUrl(string $url)
- * @method self setIconUrl(string $icon_url)
- * 
+/** 
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 class Author extends ArraySerializer {
+    /**
+     * @throws Exception
+     * 
+     * @return void
+     */
     protected function check(): void
     {
         if (!isset($this->data["name"])) {
@@ -22,16 +21,31 @@ class Author extends ArraySerializer {
         }
     }
 
+    /**
+     * @param string $name
+     * 
+     * @return self
+     */
     public function setName(string $name): self
     {
         return $this->setData("name", $name);
     }
 
+    /**
+     * @param string $url
+     * 
+     * @return self
+     */
     public function setUrl(string $url): self
     {
         return $this->setData("url", $url);
     }
 
+    /**
+     * @param string $icon_url
+     * 
+     * @return self
+     */
     public function setIconUrl(string $icon_url): self
     {
         return $this->setData("icon_url", $icon_url);

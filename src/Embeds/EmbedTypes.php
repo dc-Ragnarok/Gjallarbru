@@ -1,11 +1,9 @@
 <?php
 
-namespace cmdstr\discordwebhook\Embeds;
+namespace Discord\Webhook\Embeds;
 
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-types
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 enum EmbedTypes: string
 {    

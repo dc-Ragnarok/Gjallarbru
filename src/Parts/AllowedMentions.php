@@ -1,17 +1,17 @@
 <?php
 
-namespace cmdstr\discordwebhook\Parts;
+namespace Discord\Webhook\Parts;
 
-use cmdstr\discordwebhook\ArraySerializer;
+use Discord\Webhook\ArraySerializer;
 use Exception;
 
-/**
- * @method self allowMentionType(AllowedMentionTypes $type)
- * @method self addSnowflakes(AllowedMentionTypes $type, string ...$snowflakes)
- * 
+/** 
  * @see https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
  */
 class AllowedMentions extends ArraySerializer {
+    /**
+     * @param AllowedMentionTypes $type
+     */
     public function allowMentionType(AllowedMentionTypes $type): self
     {
         if ($type !== AllowedMentionTypes::EVERYONE && isset($this->data[$type->value])) {
@@ -29,6 +29,12 @@ class AllowedMentions extends ArraySerializer {
         return $this;
     }
 
+    /**
+     * @param AllowedMentionTypes $type
+     * @param string ...$snowflakes
+     * 
+     * @return self
+     */
     public function addSnowflakes(AllowedMentionTypes $type, string ...$snowflakes): self
     {
         if (isset($this->data["parse"]) && in_array($type->value, $this->data["parse"])) {
@@ -50,6 +56,9 @@ class AllowedMentions extends ArraySerializer {
         return $this;
     }
 
+    /**
+     * @return void
+     */
     protected function check(): void
     {
 

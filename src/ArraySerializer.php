@@ -1,20 +1,19 @@
 <?php
 
-namespace cmdstr\discordwebhook;
+namespace Discord\Webhook;
 
 /**
  * @property array $data
- * 
- * @method self setData(string $key, mixed $value) Set data in the data array
- * @method string toJson() Converts data array to json string
- * @method array toArray() Returns a clone of the data array
- * @method void check() Used to perform checks on the data array before returning json/array
- * 
- * @author Command_String - https://discord.dog/232224992908017664
  */
 abstract class ArraySerializer {
     protected array $data = [];
 
+    /**
+     * @param string $key
+     * @param mixed $value
+     * 
+     * @return self
+     */
     final protected function setData(string $key, mixed $value): self
     {
         $this->data[$key] = $value;
@@ -22,6 +21,9 @@ abstract class ArraySerializer {
         return $this;
     }
 
+    /**
+     * @return string
+     */
     final protected function toJson(): string
     {
         $this->check();
@@ -29,6 +31,9 @@ abstract class ArraySerializer {
         return json_encode($this->data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * @return array
+     */
     final protected function toArray(): array
     {
         $this->check();
@@ -37,5 +42,8 @@ abstract class ArraySerializer {
         return $that->data;
     }
 
+    /**
+     * @return void
+     */
     abstract protected function check(): void;
 }
