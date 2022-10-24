@@ -1,5 +1,5 @@
 {
-    "name": "cmdstr/discordwebhook",
+    "name": "commandstring/discordwebhook",
     "type": "library",
     "license": "MIT",
     "autoload": {
