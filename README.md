@@ -1,2 +1,2 @@
-# [commandstring-discordwebhook](https://docs.cmdstr.dev/discordwebhooks)
+# [commandstring-discordwebhook]()
 A composer package for creating discord webhooks
