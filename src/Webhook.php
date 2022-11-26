@@ -80,7 +80,7 @@ class Webhook extends ArraySerializer {
      */
     public function setContent(string $content): self
     {
-        if (strlen($content) > 2000) {
+        if (mb_strlen($content) > 2000) {
             throw new LengthException("The content of a webhook cannot exceed 2000 characters!");
         }
 
