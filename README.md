@@ -2,10 +2,10 @@
 A composer package for creating discord webhooks
 
 # Requirements #
-PHP 8.1=<
-Composer 2
-Basic PHP OOP Knowledge
-Basic Knowledge on discord webhooks
+* PHP 8.1=<
+* Composer 2
+* Basic PHP OOP Knowledge
+* Basic Knowledge on discord webhooks
 
 # Basic Example #
 
