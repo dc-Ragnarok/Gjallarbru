@@ -10,6 +10,13 @@ use Exception;
  */
 class Footer extends ArraySerializer {
     /**
+     * @return Footer
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
+    /**
      * @param string $text
      * 
      * @return self

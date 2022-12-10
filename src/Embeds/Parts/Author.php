@@ -10,6 +10,14 @@ use Exception;
  */
 class Author extends ArraySerializer {
     /**
+     * @return Author
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
+
+    /**
      * @throws Exception
      * 
      * @return void

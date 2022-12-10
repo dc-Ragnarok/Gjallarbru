@@ -10,6 +10,13 @@ use Exception;
  */
 class Image extends ArraySerializer {
     /**
+     * @return Image
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
+    /**
      * @param string $url
      * 
      * @return self

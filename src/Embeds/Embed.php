@@ -3,15 +3,24 @@
 namespace Discord\Webhook\Embeds;
 
 use Discord\Webhook\ArraySerializer;
+use Discord\Webhook\Embeds\Parts\Author;
 use Discord\Webhook\Embeds\Parts\Field;
 use Discord\Webhook\Embeds\Parts\Footer;
 use Discord\Webhook\Embeds\Parts\Image;
 use Discord\Webhook\Embeds\Parts\Thumbnail;
+use Discord\Webhook\Embeds\Parts\Video;
 
 /** 
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
  */
 class Embed extends ArraySerializer {
+    /**
+     * @return Embed
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
 
     /**
      * @return void
@@ -109,6 +118,16 @@ class Embed extends ArraySerializer {
     public function setThumbnail(Thumbnail $thumbnail): self
     {
         return $this->setData("thumbnail", $thumbnail->toArray());
+    }
+
+    public function setAuthor(Author $author): self
+    {
+        return $this->setData("author", $author->toArray());
+    }
+
+    public function setVideo(Video $video): self
+    {
+        return $this->setData("video", $video->toArray());
     }
 
     /**

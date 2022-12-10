@@ -10,6 +10,14 @@ use Exception;
  */
 class Field extends ArraySerializer {
     /**
+     * @return Field
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
+
+    /**
      * @throws Exception
      * 
      * @return void

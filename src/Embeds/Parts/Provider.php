@@ -9,6 +9,13 @@ use Discord\Webhook\ArraySerializer;
  */
 class Provider extends ArraySerializer {
     /**
+     * @return Provider
+     */
+    public static function new(): self
+    {
+        return new self;
+    }
+    /**
      * @return void
      */
     protected function check(): void
