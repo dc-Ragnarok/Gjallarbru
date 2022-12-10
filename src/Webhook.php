@@ -6,18 +6,14 @@ use Discord\Webhook\Embeds\Embed;
 use Discord\Webhook\Parts\AllowedMentions;
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use LengthException;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @property string $payload
- * @property array  $files
- * @property int    $file_count
- * @property array  $query_params
- * 
+/** 
  * @see https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params
  * 
  * @author Command_String - https://discord.dog/232224992908017664
