@@ -1,9 +1,9 @@
-name: Bifrost Unit Tests
+name: Gjallarbru Unit Tests
 run-name: ${{ github.actor }} is running tests
 on:
   pull_request:
   push:
-    branches: master
+    branches: main
 
 jobs:
   cs:
