@@ -1,5 +1,8 @@
-# commandstring-discordwebhook #
-A composer package for creating discord webhooks
+<p align="center">
+    <img src="./assets/logo.svg" height="150px">
+</p>
+
+<p align="center">Package for creating discord webhooks</p>
 
 # Requirements #
 * PHP 8.1=<
