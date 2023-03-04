@@ -6,7 +6,6 @@ use Discord\Webhook\Embeds\Embed;
 use Discord\Webhook\Parts\AllowedMentions;
 use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;

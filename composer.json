@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Discord\\Webhook\\": "./src/"
+            "Discord\\Webhook\\": "./src/",
+            "Tests\\Discord\\Webhook\\": "./tests/"
         }
     },
     "require": {
