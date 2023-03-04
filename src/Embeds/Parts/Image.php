@@ -8,17 +8,18 @@ use Exception;
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure
  */
-class Image extends ArraySerializer {
+class Image extends ArraySerializer
+{
     /**
      * @return Image
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
     /**
      * @param string $url
-     * 
+     *
      * @return self
      */
     public function setUrl(string $url): self
@@ -28,7 +29,7 @@ class Image extends ArraySerializer {
 
     /**
      * @param string $proxy_url
-     * 
+     *
      * @return self
      */
     public function setProxyUrl(string $proxy_url): self
@@ -38,7 +39,7 @@ class Image extends ArraySerializer {
 
     /**
      * @param int $height
-     * 
+     *
      * @return self
      */
     public function setWidth(int $width): self
@@ -48,7 +49,7 @@ class Image extends ArraySerializer {
 
     /**
      * @param int $height
-     * 
+     *
      * @return self
      */
     public function setHeight(int $height): self

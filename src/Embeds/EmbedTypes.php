@@ -6,7 +6,7 @@ namespace Discord\Webhook\Embeds;
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-types
  */
 enum EmbedTypes: string
-{    
+{
     case RICH = "rich";
     case IMAGE = "image";
     case VIDEO = "video";

@@ -8,18 +8,19 @@ use Exception;
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
  */
-class Field extends ArraySerializer {
+class Field extends ArraySerializer
+{
     /**
      * @return Field
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
 
     /**
      * @throws Exception
-     * 
+     *
      * @return void
      */
     protected function check(): void
@@ -27,7 +28,7 @@ class Field extends ArraySerializer {
         if (!isset($this->data["name"])) {
             throw new Exception("Field name must be defined!");
         }
-        
+
         if (!isset($this->data["value"])) {
             throw new Exception("Field value must be defined!");
         }
@@ -35,7 +36,7 @@ class Field extends ArraySerializer {
 
     /**
      * @param string $name
-     * 
+     *
      * @return self
      */
     public function setName(string $name): self
@@ -45,7 +46,7 @@ class Field extends ArraySerializer {
 
     /**
      * @param string $value
-     * 
+     *
      * @return self
      */
     public function setValue(string $value): self
@@ -55,7 +56,7 @@ class Field extends ArraySerializer {
 
     /**
      * @param bool $inline
-     * 
+     *
      * @return self
      */
     public function setInline(bool $inline): self

@@ -5,13 +5,14 @@ namespace Discord\Webhook;
 /**
  * @property array $data
  */
-abstract class ArraySerializer {
+abstract class ArraySerializer
+{
     protected array $data = [];
 
     /**
      * @param string $key
      * @param mixed $value
-     * 
+     *
      * @return self
      */
     final protected function setData(string $key, mixed $value): self
@@ -37,7 +38,7 @@ abstract class ArraySerializer {
     final protected function toArray(): array
     {
         $this->check();
-        
+
         $that = clone $this;
         return $that->data;
     }

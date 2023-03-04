@@ -5,10 +5,11 @@ namespace Discord\Webhook\Parts;
 use Discord\Webhook\ArraySerializer;
 use Exception;
 
-/** 
+/**
  * @see https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
  */
-class AllowedMentions extends ArraySerializer {
+class AllowedMentions extends ArraySerializer
+{
     /**
      * @param AllowedMentionTypes $type
      */
@@ -32,7 +33,7 @@ class AllowedMentions extends ArraySerializer {
     /**
      * @param AllowedMentionTypes $type
      * @param string ...$snowflakes
-     * 
+     *
      * @return self
      */
     public function addSnowflakes(AllowedMentionTypes $type, string ...$snowflakes): self
@@ -61,6 +62,5 @@ class AllowedMentions extends ArraySerializer {
      */
     protected function check(): void
     {
-
     }
 }

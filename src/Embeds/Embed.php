@@ -10,16 +10,17 @@ use Discord\Webhook\Embeds\Parts\Image;
 use Discord\Webhook\Embeds\Parts\Thumbnail;
 use Discord\Webhook\Embeds\Parts\Video;
 
-/** 
+/**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
  */
-class Embed extends ArraySerializer {
+class Embed extends ArraySerializer
+{
     /**
      * @return Embed
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
 
     /**
@@ -27,12 +28,11 @@ class Embed extends ArraySerializer {
      */
     protected function check(): void
     {
-        
     }
 
     /**
      * @param string $title
-     * 
+     *
      * @return self
      */
     public function setTitle(string $title): self
@@ -42,7 +42,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param EmbedTypes $type
-     * 
+     *
      * @return self
      */
     public function setType(EmbedTypes $type): self
@@ -52,7 +52,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param string $description
-     * 
+     *
      * @return self
      */
     public function setDescription(string $description): self
@@ -62,7 +62,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param string $url
-     * 
+     *
      * @return self
      */
     public function setUrl(string $url): self
@@ -72,7 +72,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param string $timestamp
-     * 
+     *
      * @return self
      */
     public function setTimestamp(string $timestamp): self
@@ -82,7 +82,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param string $color
-     * 
+     *
      * @return self
      */
     public function setColor(string $color): self
@@ -92,7 +92,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param Footer $footer
-     * 
+     *
      * @return self
      */
     public function setFooter(Footer $footer): self
@@ -102,7 +102,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param Image $image
-     * 
+     *
      * @return self
      */
     public function setImage(Image $image): self
@@ -112,7 +112,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param Thumbnail $thumbnail
-     * 
+     *
      * @return self
      */
     public function setThumbnail(Thumbnail $thumbnail): self
@@ -132,7 +132,7 @@ class Embed extends ArraySerializer {
 
     /**
      * @param Field ...$fields
-     * 
+     *
      * @return self
      */
     public function addFields(Field ...$fields): self

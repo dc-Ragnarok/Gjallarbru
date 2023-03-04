@@ -7,10 +7,11 @@ use Exception;
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure
  */
-class Thumbnail extends Image {
+class Thumbnail extends Image
+{
     /**
      * @throws Exception
-     * 
+     *
      * @return void
      */
     protected function check(): void

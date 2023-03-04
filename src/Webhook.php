@@ -13,12 +13,13 @@ use InvalidArgumentException;
 use LengthException;
 use Psr\Http\Message\ResponseInterface;
 
-/** 
+/**
  * @see https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params
- * 
+ *
  * @author Command_String - https://discord.dog/232224992908017664
  */
-class Webhook extends ArraySerializer {
+class Webhook extends ArraySerializer
+{
     public string $payload;
 
     private array $files = [];
@@ -53,14 +54,14 @@ class Webhook extends ArraySerializer {
     /**
      * @param QueryParamTypes $type
      * @param mixed $value
-     * 
+     *
      * @return self
      */
     public function addQueryParam(QueryParamTypes $type, mixed $value): self
     {
         if ($type === QueryParamTypes::WAIT && !is_bool($value)) {
             throw new Exception("WAIT query parameter must be an int or bool!");
-        } else if ($type === QueryParamTypes::THREAD_ID && !is_string($value)) {
+        } elseif ($type === QueryParamTypes::THREAD_ID && !is_string($value)) {
             throw new Exception("THREAD_ID query parameter must be a string!");
         }
 
@@ -71,7 +72,7 @@ class Webhook extends ArraySerializer {
 
     /**
      * @param string $content
-     * 
+     *
      * @return self
      */
     public function setContent(string $content): self
@@ -85,7 +86,7 @@ class Webhook extends ArraySerializer {
 
     /**
      * @param string $username
-     * 
+     *
      * @return self
      */
     public function setUsername(string $username): self
@@ -95,7 +96,7 @@ class Webhook extends ArraySerializer {
 
     /**
      * @param string $avatar_url
-     * 
+     *
      * @return self
      */
     public function setAvatarUrl(string $avatar_url): self
@@ -105,7 +106,7 @@ class Webhook extends ArraySerializer {
 
     /**
      * @param bool $tts
-     * 
+     *
      * @return self
      */
     public function setTts(bool $tts): self
@@ -115,7 +116,7 @@ class Webhook extends ArraySerializer {
 
     /**
      * @param Embed $embeds
-     * 
+     *
      * @return self
      */
     public function addEmbeds(Embed ...$embeds): self
@@ -130,10 +131,10 @@ class Webhook extends ArraySerializer {
 
         return $this;
     }
-    
+
     /**
      * @param AllowedMentions $allowedMentions
-     * 
+     *
      * @return self
      */
     public function setAllowedMentions(AllowedMentions $allowedMentions): self
@@ -145,7 +146,7 @@ class Webhook extends ArraySerializer {
      * @param string $path
      * @param string $name
      * @param string $description
-     * 
+     *
      * @return self
      */
     public function addFile(string $path, string $name = "", string $description = ""): self
@@ -159,7 +160,7 @@ class Webhook extends ArraySerializer {
         }
 
         $this->files[] = [
-            'name' => 'files['.++$this->file_count.']',
+            'name' => 'files[' . ++$this->file_count . ']',
             'contents' => Utils::tryFopen($path, 'r'),
             'filename' => $name,
             'headers'  => [
@@ -176,7 +177,7 @@ class Webhook extends ArraySerializer {
      * @param int $file_id
      * @param string $file_name
      * @param string $description
-     * 
+     *
      * @return self
      */
     private function addAttachment(int $file_id, string $file_name, string $description = ""): self
@@ -211,7 +212,7 @@ class Webhook extends ArraySerializer {
         ];
 
         if (!empty($this->query_params)) {
-            $this->url .= "?".http_build_query($this->query_params);
+            $this->url .= "?" . http_build_query($this->query_params);
         }
 
         return $client->send((new Request('POST', $this->url)), $options);

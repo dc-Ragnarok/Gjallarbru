@@ -5,21 +5,22 @@ namespace Discord\Webhook\Embeds\Parts;
 use Discord\Webhook\ArraySerializer;
 use Exception;
 
-/** 
+/**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
  */
-class Author extends ArraySerializer {
+class Author extends ArraySerializer
+{
     /**
      * @return Author
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
 
     /**
      * @throws Exception
-     * 
+     *
      * @return void
      */
     protected function check(): void
@@ -31,7 +32,7 @@ class Author extends ArraySerializer {
 
     /**
      * @param string $name
-     * 
+     *
      * @return self
      */
     public function setName(string $name): self
@@ -41,7 +42,7 @@ class Author extends ArraySerializer {
 
     /**
      * @param string $url
-     * 
+     *
      * @return self
      */
     public function setUrl(string $url): self
@@ -51,7 +52,7 @@ class Author extends ArraySerializer {
 
     /**
      * @param string $icon_url
-     * 
+     *
      * @return self
      */
     public function setIconUrl(string $icon_url): self

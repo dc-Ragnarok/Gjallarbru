@@ -8,17 +8,18 @@ use Exception;
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
  */
-class Footer extends ArraySerializer {
+class Footer extends ArraySerializer
+{
     /**
      * @return Footer
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
     /**
      * @param string $text
-     * 
+     *
      * @return self
      */
     public function setText(string $text): self
@@ -28,7 +29,7 @@ class Footer extends ArraySerializer {
 
     /**
      * @param string $iconURL
-     * 
+     *
      * @return self
      */
     public function setIconUrl(string $icon_url): self
@@ -38,7 +39,7 @@ class Footer extends ArraySerializer {
 
     /**
      * @param string $proxy_icon_url
-     * 
+     *
      * @return self
      */
     public function setProxyIconUrl(string $proxy_icon_url): self

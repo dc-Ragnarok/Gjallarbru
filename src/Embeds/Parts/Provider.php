@@ -7,25 +7,25 @@ use Discord\Webhook\ArraySerializer;
 /**
  * @see https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
  */
-class Provider extends ArraySerializer {
+class Provider extends ArraySerializer
+{
     /**
      * @return Provider
      */
     public static function new(): self
     {
-        return new self;
+        return new self();
     }
     /**
      * @return void
      */
     protected function check(): void
     {
-
     }
 
     /**
      * @param string $name
-     * 
+     *
      * @return self
      */
     public function setName(string $name): self
@@ -35,7 +35,7 @@ class Provider extends ArraySerializer {
 
     /**
      * @param string $url
-     * 
+     *
      * @return self
      */
     public function setUrl(string $url): self
